@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import connectDb from './src/config/db.js'
 import express from 'express'
+import authroutes from './src/routes/auth.route.js'
 
 
 const app = express()
@@ -14,6 +15,7 @@ app.use(express.json())
 app.get('/',(req,res)=>{
     res.send("Welcome hello world")
 })
+app.use("/api/auth", authroutes)
 const PORT = process.env.PORT || 5000
 
 
