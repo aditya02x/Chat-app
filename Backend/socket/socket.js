@@ -30,4 +30,4 @@ io.on('connection', (socket) => {
     })
 })
 
-export { app, io, httpServer }
+export { app, io, httpServer, onlineUsers }
