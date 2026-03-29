@@ -1,15 +1,16 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import connectDb from './src/config/db.js'
+
 import express from 'express'
+import cors from 'cors'
+import connectDb from './src/config/db.js'
+import { app, httpServer } from './socket/socket.js'
 import authroutes from './src/routes/auth.route.js'
 import messagesroute from './src/routes/message.route.js'
 
-const app = express()
-import cors from 'cors'
 app.use(cors())
 
-app.use(express.json())
+app.use(express.json())  // 👈 add this!
 
 
 app.get('/',(req,res)=>{
@@ -26,7 +27,7 @@ const PORT = process.env.PORT || 5000
 const startserver = async ()=>{
     try {
         await connectDb()
-        app.listen(PORT,()=>{
+        httpServer.listen(PORT,()=>{
     console.log(`server is running on ${PORT}`)
 })
 
