@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import useAuthStore from '../Store/useAuthStore.js'
 import { Link ,useNavigate } from 'react-router-dom'
 
@@ -12,8 +12,8 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await signup({ fullname, username, password })
-         navigate('/')
+        const success = await signup({ fullname, username, password })
+        if(success)  navigate('/')
     }
 
     return (

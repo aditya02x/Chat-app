@@ -14,10 +14,12 @@ const useAuthStore = create((set) => ({
         const res = await axios.post('/api/auth/signup', data)
         set({ user: res.data.user })
         alert("Signup successful!")
+        return true
     } catch (error) {
         console.log("Error:", error.response.data)  // 👈 ADD THIS
         console.error(error)
          alert(error.response.data.message)
+         return false
     } finally {
         set({ isLoading: false })
     }
@@ -29,9 +31,12 @@ const useAuthStore = create((set) => ({
             const res = await axios.post('/api/auth/login', data)
             set({ user: res.data.user })
             alert("Login successful!")
+            return true
         } catch (error) {
             console.error(error)
              alert(error.response.data.message)
+             return false
+
         } finally {
             set({ isLoading: false })
         }
@@ -40,7 +45,7 @@ const useAuthStore = create((set) => ({
     logout: () => {
         set({ user: null })
         alert("Logged out successfully!")
-         alert(error.response.data.message)
+  
     }
 
 }))
