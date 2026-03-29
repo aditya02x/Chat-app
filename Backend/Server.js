@@ -7,7 +7,7 @@ import connectDb from './src/config/db.js'
 import { app, httpServer } from './socket/socket.js'
 import authroutes from './src/routes/auth.route.js'
 import messagesroute from './src/routes/message.route.js'
-
+import userRoutes from './src/routes/user.routes.js'
 app.use(cors())
 
 app.use(express.json())  // 👈 add this!
@@ -18,6 +18,7 @@ app.get('/',(req,res)=>{
 })
 app.use("/api/auth", authroutes)
 app.use('/api/messages',messagesroute)
+app.use('/api/users', userRoutes)
 const PORT = process.env.PORT || 5000
 
 
