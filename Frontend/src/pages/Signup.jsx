@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import useAuthStore from '../Store/useAuthStore.js'
-import { Link } from 'react-router-dom'
+import { Link ,useNavigate } from 'react-router-dom'
 
 const Signup = () => {
+
+    const navigate =useNavigate()
+    const { signup , isLoading, user } = useAuthStore()
     const [fullname, setFullname] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const { signup, isLoading } = useAuthStore()
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         await signup({ fullname, username, password })
+         navigate('/')
     }
 
     return (
