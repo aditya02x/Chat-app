@@ -13,6 +13,7 @@ const useAuthStore = create((set) => ({
         console.log("Sending data:", data)  // 👈 ADD THIS
         const res = await axios.post('/api/auth/signup', data)
         set({ user: res.data.user })
+        axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
         alert("Signup successful!")
         return true
     } catch (error) {
@@ -30,6 +31,7 @@ const useAuthStore = create((set) => ({
             set({ isLoading: true })
             const res = await axios.post('/api/auth/login', data)
             set({ user: res.data.user })
+            axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
             alert("Login successful!")
             return true
         } catch (error) {

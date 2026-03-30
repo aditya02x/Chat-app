@@ -1,9 +1,12 @@
 import React from 'react'
+import Sidebar from '../components/Sidebar'
+import ChatBox from '../components/ChatBox'
 
 const Home = () => {
   return (
-    <div>
-      home page
+    <div className='flex h-screen'>
+    <Sidebar/>
+    <ChatBox/>
     </div>
   )
 }
